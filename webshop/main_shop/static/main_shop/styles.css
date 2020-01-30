@@ -3,10 +3,15 @@
     padding : 10px;
 }
 
+.register-back-link {
+    margin : auto;
+}
+
 .nav-links {
     display : flex;
     flex-direction : row;
     justify-content : space-between;
+    width : 100%
 }
 
 .nav-link {
