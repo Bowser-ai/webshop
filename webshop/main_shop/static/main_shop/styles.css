@@ -1,0 +1,33 @@
+.navbar {
+    background-color : grey;
+    padding : 10px;
+}
+
+.nav-links {
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
+}
+
+.nav-link {
+    list-style : none;
+}
+
+.nav-link > a {
+    text-decoration : none;
+}
+
+.main-title {
+    margin : 40px;
+    text-align : center;
+}
+
+.main-paragraph {
+    margin : 10px;
+}
+
+.main-footer {
+    text-align : center;
+    margin : auto;
+}
+
