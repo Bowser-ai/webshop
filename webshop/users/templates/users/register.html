@@ -1,11 +1,10 @@
 {% extends 'main_shop/base.html' %}
 
+{% block content %}
+
 {% load crispy_forms_tags %}
 {% load bootstrap4 %}
 
-{% block content %}
-
-<a class="register-back-link" href="{% url 'shop_home' %}">Go Back</a>
 <h2> Please register using the form below </h2>
 
     <form action="{% url 'register' %}" method="POST" class="form">
@@ -13,6 +12,7 @@
         {{ form|crispy }}
         {% buttons %}
             <button class="btn btn-primary"  name="submit">Register</button>
+            <a class="register-back-link" href="{% url 'shop_home' %}">Go Back</a>
         {% endbuttons %}
     </form>
 
