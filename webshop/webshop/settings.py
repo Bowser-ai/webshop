@@ -125,3 +125,8 @@ BOOTSTRAP4 = {
         'include_jquery' : True
         }
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'shop_home'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media');
+MEDIA_URL = '/media/'

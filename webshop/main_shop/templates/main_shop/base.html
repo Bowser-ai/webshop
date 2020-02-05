@@ -12,6 +12,9 @@
 <body>
     <nav class="navbar navbar-default navbar-static-top">
         <ul class="nav-links">
+          <li class="nav-link">
+            <a href="{% url 'shop_home' %}">Home</a>
+          </li>
             {% if user.is_authenticated %}
                 <p>Logged in as: {{ user.username }}</p>
                 <li class="nav-link"><a href="{% url 'logout' %}">Log out</a></li>
@@ -19,15 +22,14 @@
                 <li class="nav-link"><a href="{% url 'login' %}">Log in</a></li>
                 <li class="nav-link"><a href="{% url 'register' %}">Register</a></li>
             {% endif %}
-            <li class="nav-link"><a href=#>Shop</a></li>
+              <li class="nav-link"><a href="{% url 'shop' %}">Shop</a></li>
+            <li class="nav-link">{% block cart %}{% endblock cart %}</li>
         </ul>
     </nav>
 
     <div class="container">
         {% block content %}{% endblock content %}
     </div>
-    <footer class="main-footer">
-        <p class="footer-text">Webshop@2020</p>
-    </footer>
+    {% block javascript %}{% endblock javascript %}
 </body>
 </html>

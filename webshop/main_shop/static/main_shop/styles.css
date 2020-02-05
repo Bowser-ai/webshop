@@ -31,8 +31,23 @@
     margin : 10px;
 }
 
-.main-footer {
+.shop {
+  display: grid;
+  margin-top: 5px;
+  grid-template-columns: 400px 400px;
+  margin: auto;
+}
+
+.shop-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border : 1px grey solid;
+  margin-top: 15px;
+  width: 350px;
+}
+
+.footer-text {
     text-align : center;
     margin : auto;
 }
-

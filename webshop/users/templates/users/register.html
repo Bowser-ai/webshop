@@ -3,17 +3,14 @@
 {% block content %}
 
 {% load crispy_forms_tags %}
-{% load bootstrap4 %}
 
-<h2> Please register using the form below </h2>
+<legend class="mt-4"> Please register using the form below </legend>
 
     <form action="{% url 'register' %}" method="POST" class="form">
         {% csrf_token %}
         {{ form|crispy }}
-        {% buttons %}
-            <button class="btn btn-primary"  name="submit">Register</button>
-            <a class="register-back-link" href="{% url 'shop_home' %}">Go Back</a>
-        {% endbuttons %}
+        <button class="btn btn-outline-info"  name="submit">Register</button>
+        <a class="register-back-link" href="{% url 'shop_home' %}">Go Back</a>
     </form>
 
 {% endblock content %}

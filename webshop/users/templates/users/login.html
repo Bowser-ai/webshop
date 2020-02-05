@@ -1,17 +1,21 @@
 {% extends 'main_shop/base.html' %}
 
 {% load crispy_forms_tags %}
-{% load bootstrap4 %}
 
 {% block content %}
 
+<legend class="mt-4">Please log in: </legend>
 <form class="form" action="{% url 'login' %}" method="POST">
     {% csrf_token %}
     {{ form|crispy }}
-
-    {% buttons %}
-        <button class="btn btn-primary" name="submit">Log in</button>
-    {% endbuttons %}
+    <button class="btn btn-primary" name="submit">Log in</button>
 </form>
+
+<div class="mt-4">
+  <small> Need an account?, Please Register
+    <a href="{% url 'register' %}">Here</a>
+  <small>
+
+</div>
 
 {% endblock content %}
