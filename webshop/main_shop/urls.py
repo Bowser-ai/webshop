@@ -5,7 +5,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
         path('', views.shop_home, name='shop_home'),
-        path('shop/',views.shop, name='shop')
+        path('shop/',views.shop, name='shop'),
+        path('shop/ajax/', views.ajaxShop, name='ajax_shop'),
+        path('shop/cart', views.cart, name='cart'),
+        path('shop/cart-cancel', views.cartCancel, name='cart_cancel')
         ]
 
 if settings.DEBUG:

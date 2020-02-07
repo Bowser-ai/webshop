@@ -34,7 +34,7 @@
 .shop {
   display: grid;
   margin-top: 5px;
-  grid-template-columns: 400px 400px;
+  grid-template-columns: 50% 50%;
   margin: auto;
 }
 
@@ -44,9 +44,21 @@
   align-items: center;
   border : 1px grey solid;
   margin-top: 15px;
-  width: 350px;
+  width: 450px;
 }
 
+.cart-item {
+  display: flex;
+}
+
+.product-price {
+  color : #AA0077;
+}
+
+.total-price {
+  color : #FF0000;
+  font-size : 16pt;
+}
 .footer-text {
     text-align : center;
     margin : auto;

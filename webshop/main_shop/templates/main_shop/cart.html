@@ -1,0 +1,26 @@
+{% extends 'main_shop/base.html' %}
+
+{% block content %}
+
+ {% if products %}
+ <h1 class="text-center"> Your cart, please confirm or cancel your order</h1>
+ {% for product in products %}
+ <div class="cart-item mt-5 text-center">
+   <img style="width:150px;height:150px" class="product-image" src="{{ product.meta.img.url }}">
+   <div class="product-details">
+     <p class="product-name ml-5 mr-5"> {{ product.meta.name }}</p>
+     <p class="product-amount ml-5 mr-5">Amount:  {{ product.amount }}</p>
+     <p class="product-price ml-5 mr-5">Price: ${{ product.meta.price }}</p>
+   </div>
+ </div>
+  {% endfor %}
+  <div class="gross-total text-center mt-5">
+    <p class="total-price"> Total is ${{ total_price }}</p>
+  </div>
+  <div class="buttons text-center">
+    <button class="btn btn-info">Place Order</button>
+    <a class="btn btn-danger" href="{% url 'cart_cancel' %}">Cancel</a>
+  {% else %}
+  <h2 class="mt-5 text-center"> Your cart is Empty, please buy something from the shop</h2>
+  {% endif %}
+{% endblock content %}

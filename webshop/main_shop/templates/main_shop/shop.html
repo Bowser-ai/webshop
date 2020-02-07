@@ -7,12 +7,12 @@
 
 {% block cart %}
 {% if user.is_authenticated %}
-  {% if stored_shop_items %}
-    <a href="#">Cart({{ stored_shop_items.amount }})</a>
+  {% if shop_items %}
+    <a data-role = "cart" href="{% url 'cart' %}">Cart({{ total_amount }})</a>
     {% else %}
-    <a href="#">Cart(0)</a>
+    <a data-role= "cart" href="{% url 'cart' %}">Cart(xxx)</a>
     {% endif %}
-{% endif %}
+  {% endif %}
 {% endblock cart %}
 
 {% block content %}
@@ -22,7 +22,6 @@
     <a href="{% url 'login' %}">Login</a>
   </p>
   {% endif %}
-
 <h1 class="shop-title mt-5 text-center">Welcome to the Shop!!</h1>
 <p class="shop-subtitle mt-3 text-center"> Please select items you like and place them in the cart</p>
   <article class="shop media content-section">
@@ -38,7 +37,11 @@
           {% endif %}
           <h3> ${{ shop_item.price }}</h3>
           {% if user.is_authenticated %}
-            <button class="btn btn-info mb-2" data-role="add-to-cart" data-product-id = "{{shop_item.id}}">Add to cart</button>
+            <button class="btn btn-info mb-2"
+            data-role="add-to-cart"
+            data-product-id="{{ shop_item.id }}">
+            Add to Cart
+          </button>
           {% endif %}
         </div>
       {% endfor %}
