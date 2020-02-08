@@ -8,7 +8,8 @@ urlpatterns = [
         path('shop/',views.shop, name='shop'),
         path('shop/ajax/', views.ajaxShop, name='ajax_shop'),
         path('shop/cart', views.cart, name='cart'),
-        path('shop/cart-cancel', views.cartCancel, name='cart_cancel')
+        path('shop/cart-cancel', views.cartCancel, name='cart_cancel'),
+        path('shop/order', views.Order.as_view(), name='order')
         ]
 
 if settings.DEBUG:

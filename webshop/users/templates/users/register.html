@@ -1,16 +1,17 @@
-{% extends 'main_shop/base.html' %}
+{% extends 'users/base_form.html' %}
 
-{% block content %}
+{% block legend %}
+ Please register using the form below
+{% endblock legend %}
 
-{% load crispy_forms_tags %}
+{% block btn_label %}
+  Register
+{% endblock btn_label %}
 
-<legend class="mt-4"> Please register using the form below </legend>
-
-    <form action="{% url 'register' %}" method="POST" class="form">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button class="btn btn-outline-info"  name="submit">Register</button>
-        <a class="register-back-link" href="{% url 'shop_home' %}">Go Back</a>
-    </form>
-
-{% endblock content %}
+{% block form_post %}
+<div class="mt-4">
+  <small> Already have an account?, Sign In
+    <a href="{% url 'register' %}">Here</a>
+  <small>
+</div>
+{% endblock form_post %}

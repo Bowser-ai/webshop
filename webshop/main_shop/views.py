@@ -2,7 +2,8 @@ from django.shortcuts import render, reverse
 from django.contrib.sessions.models import Session
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponseRedirect
-from .models import Shop;
+from django.views.generic import CreateView
+from .models import Shop, Order;
 
 def shop_home(request):
     return render(request, 'main_shop/main.html')
@@ -69,3 +70,14 @@ def __getTotalAmountFromCart(request):
         total_amount += request.session['cart'][key]['amount']
 
     return total_amount
+
+class Order(CreateView):
+    model = Order
+    template_name = 'users/order.html'
+    fields = ['street', 'country', 'zip']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['shop_items'] = Shop.objects.all()
+
+        return context

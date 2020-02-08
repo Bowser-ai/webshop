@@ -22,20 +22,20 @@ $add_to_cart_button.click(event =>{
       product_id
     },
     success : data => {
-      const $success = $('<h2>',{
+      const $success = $('<h4>',{
         class : 'item-added-success text-center',
         style : 'color : green;display : none',
         text : 'Item has been added to the cart',
       });
 
       setTimeout(() => {
-        $success.toggle('slow', () => {
+        $success.toggle('fast', () => {
           $success.empty();
         });
-      },1500);
+      },800);
 
-      $('nav').after($success);
-      $success.toggle('slow');
+      $this_button.after($success);
+      $success.toggle('fast');
 
       const $cart = $(CART_SELECTOR);
       const amount = data.amount;

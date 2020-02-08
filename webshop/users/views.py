@@ -19,7 +19,3 @@ def register(request):
             return HttpResponseRedirect(reverse('shop_home'));
 
     return render(request, 'users/register.html', {'form' : form})
-
-def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('shop_home'))
