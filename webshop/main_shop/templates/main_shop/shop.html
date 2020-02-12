@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block javascript %}
-<script type="text/javascript" src="{% static 'javascript/shop.js' %}"></script>
+<script type="text/javascript" src="{% static 'main_shop/javascript/shop.js' %}"></script>
 {% endblock javascript %}
 
 {% block cart %}
 {% if user.is_authenticated %}
   {% if shop_items %}
-    <a data-role = "cart" href="{% url 'cart' %}">Cart({{ total_amount }})</a>
+    <a data-role = "cart" href="{% url 'main_shop:cart' %}">Cart({{ total_amount }})</a>
     {% else %}
-    <a data-role= "cart" href="{% url 'cart' %}">Cart(xxx)</a>
+    <a data-role= "cart" href="{% url 'main_shop:cart' %}">Cart(xxx)</a>
     {% endif %}
   {% endif %}
 {% endblock cart %}
@@ -19,7 +19,7 @@
 
 {% if user.is_authenticated == False %}
   <p class="text-center"> Please login to make full use of the shop
-    <a href="{% url 'login' %}?next={{ request.get_full_path|urlencode}}">Login</a>
+    <a href="{% url 'users:login' %}?next={{ request.get_full_path|urlencode}}">Login</a>
   </p>
   {% endif %}
 <h1 class="shop-title mt-5 text-center">Welcome to the Shop!!</h1>

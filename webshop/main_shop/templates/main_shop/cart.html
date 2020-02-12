@@ -18,8 +18,8 @@
     <p class="total-price"> Total is ${{ total_price }}</p>
   </div>
   <div class="buttons text-center">
-    <a class="btn btn-info" href="{% url 'order' %}">Place Order</a>
-    <a class="btn btn-danger" href="{% url 'cart_cancel' %}">Cancel</a>
+    <a class="btn btn-info" href="{% url 'main_shop:order' %}">Place Order</a>
+    <a class="btn btn-danger" href="{% url 'main_shop:cart_cancel' %}">Cancel</a>
   {% else %}
   <h2 class="mt-5 text-center"> Your cart is Empty, please buy something from the shop</h2>
   {% endif %}

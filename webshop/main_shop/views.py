@@ -1,15 +1,17 @@
 from django.shortcuts import render, reverse
 from django.contrib.sessions.models import Session
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponseRedirect
 from django.views.generic import CreateView
-from .models import Shop, Order;
+from .models import Shop, Order as ShopOrder
+from users.forms import OrderForm
 
 def shop_home(request):
     return render(request, 'main_shop/main.html')
 
 def shop(request):
-    shop_items = Shop.objects.all()
+    shop_items = Shop.objects.order_by('name')
     context = {'shop_items' : shop_items}
 
     if 'cart' in request.session:
@@ -20,10 +22,10 @@ def shop(request):
 
     return render(request, 'main_shop/shop.html', context)
 
+@login_required
 def cart(request):
     products = []
     cart = request.session['cart']
-
     total_price = 0.0
     for product_id in cart.keys():
         amount = cart[product_id]['amount']
@@ -61,23 +63,30 @@ def ajaxShop(request):
 
 def cartCancel(request):
     request.session['cart'] = {}
-    return HttpResponseRedirect(reverse('shop'))
+    return HttpResponseRedirect(reverse('main_shop:shop'))
 
 def __getTotalAmountFromCart(request):
-    total_amount = 0
-
-    for key in request.session['cart'].keys():
-        total_amount += request.session['cart'][key]['amount']
-
-    return total_amount
+    cart = request.session['cart']
+    return sum([cart[key]['amount'] for key in cart.keys()])
 
 class Order(CreateView):
-    model = Order
     template_name = 'users/order.html'
-    fields = ['street', 'country', 'zip']
+    form_class = OrderForm
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['shop_items'] = Shop.objects.all()
-
-        return context
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            for key in request.session['cart'].keys():
+                order = ShopOrder.objects.create(
+                    user=request.user,
+                    shop_item = Shop.objects.get(id=key),
+                    amount = request.session['cart'][key]['amount'],
+                    street = form.cleaned_data['street'],
+                    zip = form.cleaned_data['zip'],
+                    country = form.cleaned_data['country'],
+                    payment = form.cleaned_data['payment']
+                    )
+            request.session['cart'] = {}
+            return HttpResponseRedirect(reverse('main_shop:shop'))
+        else:
+            return self.form_invalid(form)

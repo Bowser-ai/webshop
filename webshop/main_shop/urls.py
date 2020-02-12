@@ -3,6 +3,8 @@ from . import views
 from webshop import settings
 from django.conf.urls.static import static
 
+app_name = 'main_shop'
+
 urlpatterns = [
         path('', views.shop_home, name='shop_home'),
         path('shop/',views.shop, name='shop'),

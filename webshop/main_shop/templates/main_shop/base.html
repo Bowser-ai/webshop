@@ -13,16 +13,16 @@
     <nav class="navbar navbar-default navbar-static-top">
         <ul class="nav-links">
           <li class="nav-link">
-            <a href="{% url 'shop_home' %}">Home</a>
+            <a href="{% url 'main_shop:shop_home' %}">Home</a>
           </li>
             {% if user.is_authenticated %}
                 <p>Logged in as: {{ user.username }}</p>
-                <li class="nav-link"><a href="{% url 'logout' %}">Log out</a></li>
+                <li class="nav-link"><a href="{% url 'users:logout' %}">Log out</a></li>
             {% else %}
-                <li class="nav-link"><a href="{% url 'login' %}">Log in</a></li>
-                <li class="nav-link"><a href="{% url 'register' %}">Register</a></li>
+                <li class="nav-link"><a href="{% url 'users:login' %}">Log in</a></li>
+                <li class="nav-link"><a href="{% url 'users:register' %}">Register</a></li>
             {% endif %}
-              <li class="nav-link"><a href="{% url 'shop' %}">Shop</a></li>
+              <li class="nav-link"><a href="{% url 'main_shop:shop' %}">Shop</a></li>
             <li class="nav-link">{% block cart %}{% endblock cart %}</li>
         </ul>
     </nav>

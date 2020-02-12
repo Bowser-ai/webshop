@@ -11,6 +11,12 @@ class Shop(models.Model):
     def __str__(self):
         return self.name;
 
+class Payment(models.Model):
+    option = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.option
+
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     shop_item = models.ForeignKey(Shop, on_delete=models.PROTECT)
@@ -19,6 +25,7 @@ class Order(models.Model):
     street = models.CharField(max_length=300)
     zip = models.CharField(max_length=15)
     country = models.CharField(max_length=300)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
 
     class Meta:
         index_together = ['user', 'shop_item']

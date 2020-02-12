@@ -1,4 +1,4 @@
-#!/home/martijn/src/django_projects/webshop/ll_env/bin/python3.7
+#!/home/jessica/src/python/webshop/ll_env/bin/python3.7
 from django.core import management
 
 if __name__ == "__main__":
